@@ -65,14 +65,8 @@ div.hero h2 {
 
 div.hero figure {
     text-align: center;
+    margin:0;
 }
-div.hero aside {
-    width: 30%;
-    padding-left: 200px;
-    margin-left: 15px;
-    float: right;
-    font-style: italic;
-  }
 .container {
     padding: 40px;
     width: 100%;
