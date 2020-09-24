@@ -38,13 +38,13 @@ div.menu ul li a:hover  {
 }
 
 div.hero {
-    height: 350px;
+    height: 400px;
     background-color: #b4c6f0;
     background-image: url('/bg.png');
     background-size: 400px;
     background-repeat: no-repeat;
     background-position: center bottom;
-    padding-top: 40px;
+    padding-top: 2px;
 }
 
 div.hero h1,
@@ -63,6 +63,16 @@ div.hero h2 {
     color: #4d5791;
 }
 
+div.hero figure {
+    text-align: center;
+}
+div.hero aside {
+    width: 30%;
+    padding-left: 200px;
+    margin-left: 15px;
+    float: right;
+    font-style: italic;
+  }
 .container {
     padding: 40px;
     width: 100%;
@@ -90,6 +100,7 @@ div.hero h2 {
     text-align: justify;
     margin: 20px;
 }
+
 
 @media screen and (min-width: 768px) {
     .container .div.text-box {
