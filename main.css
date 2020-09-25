@@ -15,7 +15,11 @@ aside {
     font-style: italic;
     background-color: lightgray;
   }
-
+.idiomatic{
+    font-size: 10px;
+    font-family: Tahoma, Arial;
+    color: red;
+}
 body {
     font-size: 10px;
     font-family: Tahoma, Arial;
