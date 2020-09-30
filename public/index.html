@@ -21,8 +21,8 @@
         <nav> <!-- This is a Semantic HTML Change -->
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/about.html">About</a></li>
-                <li><a href="/login.html">Login</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./login.html">Login</a></li>
                 <li><a href="https://google.com">Google</a></li>
             </ul>
         </nav>
@@ -94,29 +94,18 @@
                         Also, they to live happier lives... since they expend without guilt or fear... 
                         because they know it is all good and accounted for.
                     </p>
-                    <h4>In French Language</h4>
-                    <h1>Résultats</h1>
-                    <p><i lang="fr" class="idiomatic">Les gens qui s'en tiennent à un plan financier, budgétisant chaque dépense, se désendettent plus rapidement!
-                        De plus, ils doivent vivre une vie plus heureuse ... puisqu'ils dépensent sans culpabilité ni peur ...
-                        parce qu'ils savent que tout est bon et pris en compte.</i></p><!-- This is a a11y HTML Change -->
                 </div>
             </td>
             <td>
                 <div class="text-box">   
-                
-                        <h1>Free</h1>
-                        <p>
-                            This app is free!!! And you are the only one holding your data!
-                        </p>
-                        <h4>In French Language</h4>
-                        <h1>Gratuite</h1>
-                        <p><i lang="fr" class="idiomatic">Cette application est gratuite !!!<!-- This is a a11y HTML Change -->
-                             Et vous êtes le seul à détenir vos données!</i></p>
+                    <h1>My Chart</h1>
+                    <p>
+                        <canvas id="myChart" width="400" height="400"></canvas>
+                    </p>
                 </div>
             </td>
             </tr></table>
             </div>
-
         </div>
     </div>
     <div class="bottom">
@@ -126,7 +115,58 @@
         </footer>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 
-
+    <script>
+        var dataSource={
+            datasets:[
+                {
+                    data: [100,400,50],
+                    backgroundColor:[
+                        // '#ffcd56',
+                        // '#ff6384',
+                        // '#36a2eb',
+                        // '#fd6b19'
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth:5
+                }
+            ],
+            labels:[
+                'Grocery','Rent','Utilities'
+            ]
+        };
+        function getBudget(){
+            axios.get('/budget')
+            .then(function(res){
+                console.log(res);
+                for(var i=0;i<res.data.myBudget.length;i++){
+                    dataSource.datasets[0].data[i]=res.data.myBudget[i].budget;
+                    dataSource.labels[i]=res.data.myBudget[i].title;
+                }
+                createChart();
+            })
+        }
+        function createChart(){
+            var ctx=document.getElementById("myChart").getContext("2d");
+            var myPieChart=new Chart(ctx,{
+                type:'pie',
+                data:dataSource
+            });
+        }
+        getBudget();
+    </script>
 </body>
 </html>
