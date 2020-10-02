@@ -8,6 +8,10 @@ app.use('/',express.static('public'));
 const budget={
     myBudget:[
     {
+        title:"Shopping",
+        budget: 120
+    },
+    {
         title:"Grocery",
         budget: 400
     },
@@ -20,15 +24,11 @@ const budget={
         budget: 50
     },
     {
-        title:"Shopping",
-        budget: 120
-    },
-    {
         title:"EMI",
         budget: 560
     },
     {
-        title:"Insurance per month",
+        title:"Insurance",
         budget: 50
     },
     {
