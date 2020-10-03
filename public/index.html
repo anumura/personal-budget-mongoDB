@@ -149,7 +149,7 @@
                 }
             ],
             labels:[
-                //'Grocery','Rent','Utilities'
+                'Grocery','Rent','Utilities'
             ]
         };
         function getBudget(){
@@ -172,7 +172,7 @@
             });
         }
         getBudget();
-
+        //change(myPBudgetD3JS());
         // ******************************************D3JS*******************************************        
         var svg = d3.select('#body1')
         .append("svg")
@@ -208,11 +208,11 @@
     
         var color = d3.scale.ordinal()
             .range(["#98abc5","#d0743c", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#ff8c00"]);
-        
-    
         function myPBudgetD3JS (){
             var labels=dataSource.labels;
             var values=dataSource.datasets[0].data;
+            console.log(dataSource.labels);
+            console.log(dataSource.datasets[0].data);
             var k=-1;
             var mydata=labels.map(function(label){
                 k++;
@@ -221,7 +221,8 @@
             console.log(mydata);
             return mydata;
         }
-        //change(randomData());
+        //console.log(dataSource);
+        //change(mydata);
         function change(data){
             /* ------- PIE SLICES -------*/
             var slice = svg.select(".slices").selectAll('#pathslice')

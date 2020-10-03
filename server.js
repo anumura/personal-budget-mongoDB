@@ -5,7 +5,8 @@ const port= 3000;
 
 app.use('/',express.static('public'));
 
-// const budget={
+ const budget=require('./budget.json');
+ //{
 //     myBudget:[
 //     {
 //         title:"Grocery",
@@ -26,9 +27,9 @@ app.get('/hello',(req,res)=>{
     res.send("Hello World");
 });
 
-// app.get('/budget',(req,res)=>{
-//     res.json(budget);
-// });
+ app.get('/budget',(req,res)=>{
+     res.json(budget);
+ });
 
 app.listen(port,()=>{
 console.log(`Example application is Serving at http://localhost:${port}`)
