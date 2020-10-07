@@ -1,9 +1,11 @@
 const { static } = require("express");
 const express=require("express");
+const cors=require("cors");
 const app=express();
 const port= 3000;
 
-app.use('/',express.static('public'));
+app.use(cors());
+//app.use('/',express.static('public'));
 
  const budget=require('./budget.json');
  //{
@@ -32,5 +34,5 @@ app.get('/hello',(req,res)=>{
  });
 
 app.listen(port,()=>{
-console.log(`Example application is Serving at http://localhost:${port}`)
+console.log(`API is Serving at http://localhost:${port}`)
 });
