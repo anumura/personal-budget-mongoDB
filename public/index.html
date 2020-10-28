@@ -124,41 +124,21 @@
         var dataSource={
             datasets:[
                 {
-                    data: [100,400,50],
-                    backgroundColor:[
-                         '#ffcd56',
-                         '#ff6384',
-                         '#36a2eb',
-                         '#fd6b19',
-                        'rgba(255, 99, 132, 0.7)',
-                        'rgba(54, 162, 235, 0.6)',
-                        'rgba(75, 192, 192, 0.6)',
-                         'rgba(153, 102, 255, 0.6)',
-                    ],
-                    borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 99, 132, 1)'
-                    ],
-                    borderWidth:1
+                    data: [],
+                    backgroundColor:[]
                 }
             ],
-            labels:[
-                'Grocery','Rent','Utilities'
-            ]
+            labels:[]
         };
         function getBudget(){
             axios.get('http://localhost:3000/budget')
             .then(function(res){
                 console.log(res);
-                for(var i=0;i<res.data.myBudget.length;i++){
-                    dataSource.datasets[0].data[i]=res.data.myBudget[i].budget;
-                    dataSource.labels[i]=res.data.myBudget[i].title;
+                var k='#';
+                for(var i=0;i<res.data.length;i++){
+                    dataSource.datasets[0].data[i]=res.data[i].budget;
+                    dataSource.datasets[0].backgroundColor[i]= k.concat(res.data[i].color);
+                    dataSource.labels[i]=res.data[i].title;
                 }
                 createChart();
                 change(myPBudgetD3JS());
@@ -172,7 +152,7 @@
             });
         }
         getBudget();
-        //change(myPBudgetD3JS());
+        
         // ******************************************D3JS*******************************************        
         var svg = d3.select('#body1')
         .append("svg")
@@ -207,7 +187,8 @@
         var key = function(d){ return d.data.label; };
     
         var color = d3.scale.ordinal()
-            .range(["#98abc5","#d0743c", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#ff8c00"]);
+            //.range(["#98abc5","#d0743c", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#ff8c00"]);
+            .range(dataSource.datasets[0].backgroundColor);
         function myPBudgetD3JS (){
             var labels=dataSource.labels;
             var values=dataSource.datasets[0].data;
